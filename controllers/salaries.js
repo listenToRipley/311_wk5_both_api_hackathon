@@ -5,12 +5,7 @@ const {error500, error404} = require('../mysql/error')
 
 //3 GETS
 
-
-
 //3 UPDATES
-
-
-
 
 
 

@@ -1,15 +1,15 @@
 const mysql = require('mysql')
 
 class Connection {
-  construction() {
+  constructor() {
     if(!this.pool) {
       console.log('creating connection...')
-      this.pool = mysql.createPool({
+       this.pool = mysql.createPool({
         connectionLimit: 100,
         host:'104.197.199.160',
         user:'root',
         password:'8ufDfd1qDysPmPz5',
-        database: 'employees'
+        database: 'admin'
       })
 
       return this.pool
@@ -19,4 +19,4 @@ class Connection {
 }
 const instance = new Connection()
 
-module.export = instance
+module.exports = instance
