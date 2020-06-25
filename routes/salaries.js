@@ -1,18 +1,19 @@
-const express = require('express')
-const router = express.Router()
-const controller = require('../controllers/salaries')
-
+const express = require("express");
+const router = express.Router();
+const salariesController = require("../controllers/salaries");
 
 //GETS
-router.get()
+router.get("/salaries", salariesController.getCurrentSalaries);
 
-router.get()
+router.get("/salary/:emp_no", salariesController.getSalaryByEmpNo);
 
-router.get()
+router.get("/salary/:first_name", salariesController.getSalaryByFirstName);
 
 //UPDATES
-router.put()
+router.put("/salaries", salariesController.updateCurrentSalaries);
 
-router.put()
+router.put("/salary/:emp_no", salariesController.updateSalariesByEmpNo);
 
-router.put()
+router.put("/salary/:first_name", salariesController.updateSalariesByFirstName);
+
+modules.export = router;
