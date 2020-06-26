@@ -1,40 +1,49 @@
 const mysql = require("mysql");
 const pool = require("../mysql/connections");
-const { error500, error404 } = require("../mysql/error");
+const { handleSQLError } = require("../mysql/error");
 
-//3 GETS
+// GETS
 
 const getCurrentSalaries = (req, res) => {
   // find all CURRENT salaries
- 
-  
-
   
   // res.send("getting salaries...");
+  let sql =
+    "select employees.emp_no, employees.first_name, employees.last_name, salaries.salary from employees join salaries where employees.emp_no = salaries.emp_no and to_date = (select max(to_date) from salaries) limit 50";
+  pool.query(sql, (err, rows) => {
+    if (err) return handleSQLError(res, err);
+    return res.json(rows);
+  });
+
 };
 
 const getSalaryByEmpNo = (req, res) => {
+  let sql =
+    "select employees.emp_no, employees.first_name, employees.last_name, salaries.salary from employees join salaries where employees.emp_no = salaries.emp_no and to_date = (select max(to_date) from salaries) and employees.emp_no = ?";
+  sql = mysql.format(sql, [req.params.id]);
 
-
-
-
-  // res.send("getting salaries...");
+  pool.query(sql, (err, rows) => {
+    if (err) return handleSQLError(res, err);
+    return res.json(rows);
+  });
 };
 
 const getSalaryByFirstName = (req, res) => {
+  let sql =
+    "select employees.emp_no, employees.first_name, employees.last_name, salaries.salary from employees join salaries where employees.emp_no = salaries.emp_no and to_date = (select max(to_date) from salaries) and employees.first_name = ? limit 50";
+  sql = mysql.format(sql, [req.params.first_name]);
 
-
-
-  // res.send("getting salaries...");
+  pool.query(sql, (err, rows) => {
+    if (err) return handleSQLError(res, err);
+    return res.json(rows);
+  });
 };
-
-
 
 // EXPORT
 
 module.exports = {
   //salaries functions
-  getSalaries,
+  getCurrentSalaries,
   getSalaryByEmpNo,
   getSalaryByFirstName,
 };
