@@ -9,8 +9,6 @@ const getCurrentSalaries = (req, res) => {
  
   
 
-
-
   
   // res.send("getting salaries...");
 };

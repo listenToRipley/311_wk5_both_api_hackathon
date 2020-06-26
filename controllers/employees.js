@@ -15,7 +15,6 @@ const getEmployeesById = (req, res) => {
 //return individual who employee numbers match the number id provided 
 let sql = "SELECT * FROM employees WHERE emp_no = ?"
 sql = mysql.format(sql, [req.params.id])
-
   pool.query(sql, (err, rows) => {
   if(err) return handleSQLError(res, err)
   return res.json(rows)
