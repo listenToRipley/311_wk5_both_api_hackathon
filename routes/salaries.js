@@ -9,11 +9,5 @@ router.get("/salary/:emp_no", salariesController.getSalaryByEmpNo);
 
 router.get("/salary/:first_name", salariesController.getSalaryByFirstName);
 
-//UPDATES
-router.put("/salaries", salariesController.updateCurrentSalaries);
-
-router.put("/salary/:emp_no", salariesController.updateSalariesByEmpNo);
-
-router.put("/salary/:first_name", salariesController.updateSalariesByFirstName);
 
 modules.export = router;
