@@ -1,11 +1,6 @@
-const error500 = (res, err) => {
+const handleSQLError = (res, err) => {
   console.log('SQL Error: ', err)
-  return res.status(500).send('Server error');
+  return res.status(500).send('Something went wrong');
 }
 
-const error404 = (res, err) => {
-  console.log('SQL Error: ', err)
-  return res.status(404).send('Invalid request');
-}
-
-module.exports = { error500, error404 }
+module.exports = { handleSQLError }
